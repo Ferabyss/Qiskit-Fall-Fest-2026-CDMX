@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qiskit Fall Fest 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF7F5;
+    --pink:#F7B6CE;
+    --pink-deep:#EE93B8;
+    --lavender:#D9CBF3;
+    --lavender-deep:#B79EE8;
+    --sky:#BFE1F2;
+    --mint:#BFEBDD;
+    --mint-deep:#7FD2B2;
+    --ink:#2B1E44;
+    --ink-soft:#5B4C77;
+    --line:rgba(43,30,68,0.12);
+    --radius:22px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:"IBM Plex Sans", system-ui, sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:"Space Grotesk", system-ui, sans-serif;
+    color:var(--ink);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+  @media (max-width:600px){ .wrap{padding:0 20px;} }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(251,247,245,0.85);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:16px; padding-bottom:16px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:"Space Grotesk"; font-weight:600; font-size:1.05rem;
+  }
+  .brand-mark{
+    width:30px;height:30px;border-radius:50%;
+    background:conic-gradient(from 200deg, var(--pink), var(--lavender), var(--sky), var(--pink));
+    flex-shrink:0;
+  }
+  .navlinks{display:flex; gap:28px; font-size:0.92rem; color:var(--ink-soft);}
+  .navlinks a{text-decoration:none; transition:color .15s;}
+  .navlinks a:hover{color:var(--ink);}
+  @media (max-width:640px){ .navlinks{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:76px 0 60px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:48px;
+    align-items:center;
+  }
+  @media (max-width:800px){ .hero .wrap{grid-template-columns:1fr;} }
+
+  .kicker{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.85rem; color:var(--ink-soft);
+    margin-bottom:18px;
+  }
+  .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--pink-deep);}
+
+  .hero h1{
+    font-size:clamp(2.4rem, 5.4vw, 3.6rem);
+    font-weight:700;
+    line-height:1.05;
+  }
+  .hero h1 span{ color:var(--pink-deep); }
+
+  .hero p.lede{
+    margin-top:20px;
+    font-size:1.08rem;
+    color:var(--ink-soft);
+    max-width:46ch;
+  }
+
+  .meta-row{
+    display:flex; flex-wrap:wrap; gap:14px;
+    margin-top:28px;
+  }
+  .meta-pill{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:100px;
+    padding:9px 18px;
+    font-size:0.9rem;
+    font-weight:500;
+    display:flex; align-items:center; gap:8px;
+  }
+  .meta-pill.filled{ background:var(--lavender); border-color:transparent; }
+
+  .cta-row{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 26px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:0.95rem;
+    text-decoration:none;
+    transition:transform .15s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-primary{ background:var(--ink); color:var(--cream); }
+  .btn-ghost{ background:transparent; border:1.5px solid var(--ink); color:var(--ink); }
+
+  /* circuit art */
+  .circuit{ width:100%; height:auto; }
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{ padding:64px 0; }
+  .section-head{ max-width:640px; margin-bottom:40px; }
+  .section-head h2{ font-size:clamp(1.7rem, 3.2vw, 2.2rem); font-weight:700; }
+  .section-head p{ color:var(--ink-soft); margin-top:12px; font-size:1.02rem; }
+
+  /* ---------- ABOUT / STATS ---------- */
+  .about{ display:grid; grid-template-columns:1.3fr 1fr; gap:44px; }
+  @media (max-width:800px){ .about{ grid-template-columns:1fr; } }
+  .about-text p{ font-size:1.02rem; color:var(--ink-soft); }
+  .about-text strong{ color:var(--ink); }
+
+  .stat-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .stat-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px;
+  }
+  .stat-card .num{ font-family:"Space Grotesk"; font-size:1.9rem; font-weight:700; }
+  .stat-card .lab{ font-size:0.86rem; color:var(--ink-soft); margin-top:4px; }
+  .stat-card:nth-child(1){ background:var(--pink); }
+  .stat-card:nth-child(2){ background:var(--sky); }
+  .stat-card:nth-child(3){ background:var(--lavender); }
+  .stat-card:nth-child(4){ background:#fff; }
+
+  /* ---------- PROGRAM ---------- */
+  .program-list{ border-top:1px solid var(--line); }
+  .program-row{
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:24px;
+    padding:18px 0;
+    border-bottom:1px solid var(--line);
+    align-items:baseline;
+  }
+  .program-row time{ font-weight:600; color:var(--ink-soft); font-size:0.92rem; }
+  .program-row .activity{ font-size:1.02rem; }
+  .program-row.highlight .activity{ font-weight:600; color:var(--pink-deep); }
+  @media (max-width:560px){
+    .program-row{ grid-template-columns:96px 1fr; }
+  }
+
+  /* ---------- POSTER TOPICS ---------- */
+  .chip-cloud{ display:flex; flex-wrap:wrap; gap:10px; }
+  .chip{
+    padding:9px 16px;
+    border-radius:100px;
+    background:#fff;
+    border:1px solid var(--line);
+    font-size:0.9rem;
+  }
+  .chip:nth-child(3n+1){ background:var(--pink); border-color:transparent; }
+  .chip:nth-child(3n+2){ background:var(--sky); border-color:transparent; }
+  .chip:nth-child(3n+3){ background:var(--lavender); border-color:transparent; }
+
+  /* ---------- HACKATHON ---------- */
+  .hackathon{
+    background:linear-gradient(160deg, var(--mint) 0%, #EAF8F2 55%, var(--cream) 100%);
+    border-radius:32px;
+    margin:0 auto;
+    max-width:1080px;
+    padding:56px 44px;
+  }
+  @media (max-width:640px){ .hackathon{ padding:40px 24px; border-radius:24px; } }
+
+  .hackathon .tag{
+    display:inline-block;
+    background:var(--mint-deep);
+    color:#0F3D2E;
+    font-weight:600;
+    font-size:0.82rem;
+    padding:6px 14px;
+    border-radius:100px;
+    margin-bottom:18px;
+  }
+  .hackathon h2{ font-size:clamp(1.8rem, 3.6vw, 2.4rem); max-width:18ch; }
+  .hackathon p.lede{ color:#1E5B47; max-width:56ch; margin-top:16px; font-size:1.03rem; }
+
+  .hack-grid{
+    display:grid; grid-template-columns:repeat(3,1fr);
+    gap:18px; margin-top:36px;
+  }
+  @media (max-width:760px){ .hack-grid{ grid-template-columns:1fr; } }
+  .hack-card{
+    background:rgba(255,255,255,0.75);
+    border-radius:18px;
+    padding:22px;
+  }
+  .hack-card h3{ font-size:1.05rem; font-weight:600; }
+  .hack-card p{ font-size:0.92rem; color:#1E5B47; margin-top:8px; }
+
+  .hackathon .cta-row{ margin-top:34px; }
+  .btn-hack{ background:var(--ink); color:#fff; }
+
+  /* ---------- SUPPORT ---------- */
+  .support{ display:grid; grid-template-columns:auto 1fr; gap:28px; align-items:flex-start; }
+  @media (max-width:640px){ .support{ grid-template-columns:1fr; } }
+  .ibm-badge{
+    width:88px;height:88px;border-radius:50%;
+    background:var(--ink); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:"Space Grotesk"; font-weight:700; font-size:0.85rem;
+    text-align:center; line-height:1.1; flex-shrink:0;
+  }
+  .support-text p{ color:var(--ink-soft); }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:40px 0 60px;
+    margin-top:20px;
+  }
+  footer .wrap{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px;
+  }
+  footer .org{ font-size:0.92rem; color:var(--ink-soft); max-width:40ch; }
+  footer .contact a{ text-decoration:none; font-weight:600; }
+  footer .contact{ font-size:0.92rem; }
+  footer .contact div{ margin-bottom:4px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="brand-mark"></span> Qiskit Fall Fest 2026</div>
+    <div class="navlinks">
+      <a href="#sobre">Sobre el evento</a>
+      <a href="#programa">Programa</a>
+      <a href="#posters">Pósters</a>
+      <a href="#hackathon">Hackathon</a>
+      <a href="#contacto">Registro</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="kicker"><span class="dot"></span> Evento oficial de Qiskit</div>
+      <h1>Qiskit Fall Fest <span>2026</span></h1>
+      <p class="lede">Un día de conferencias y sesión de pósters sobre computación cuántica, hecho por y para la comunidad de física, matemáticas, ciencias computacionales e ingeniería.</p>
+
+      <div class="meta-row">
+        <span class="meta-pill filled">📍 Ciudad de México</span>
+        <span class="meta-pill filled">🗓️ Noviembre 2026</span>
+        <span class="meta-pill">🎟️ Entrada gratuita</span>
+        <span class="meta-pill">👥 ~100 asistentes</span>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://forms.gle/oj7DVksdnHsRG48YA" target="_blank" rel="noopener">Quiero asistir</a>
+        <a class="btn btn-ghost" href="#hackathon">Ver el hackathon →</a>
+      </div>
+    </div>
+
+    <div>
+      <svg class="circuit" viewBox="0 0 420 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="210" cy="180" r="150" fill="#F7B6CE" opacity="0.55"/>
+        <circle cx="210" cy="180" r="108" fill="#D9CBF3" opacity="0.55"/>
+        <g stroke="#2B1E44" stroke-width="1.6" opacity="0.75">
+          <line x1="60" y1="120" x2="360" y2="120"/>
+          <line x1="60" y1="180" x2="360" y2="180"/>
+          <line x1="60" y1="240" x2="360" y2="240"/>
+        </g>
+        <g stroke="#2B1E44" stroke-width="1.6" opacity="0.55">
+          <line x1="140" y1="70" x2="140" y2="290"/>
+          <line x1="280" y1="70" x2="280" y2="290"/>
+        </g>
+        <circle cx="140" cy="120" r="7" fill="#2B1E44"/>
+        <circle cx="280" cy="180" r="7" fill="#2B1E44"/>
+        <circle cx="140" cy="240" r="7" fill="#2B1E44"/>
+        <circle cx="280" cy="120" r="7" fill="#fff" stroke="#2B1E44" stroke-width="1.6"/>
+        <circle cx="140" cy="180" r="7" fill="#fff" stroke="#2B1E44" stroke-width="1.6"/>
+        <circle cx="280" cy="240" r="7" fill="#fff" stroke="#2B1E44" stroke-width="1.6"/>
+        <rect x="185" y="150" width="50" height="50" rx="12" fill="#BFE1F2" stroke="#2B1E44" stroke-width="1.6"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section id="sobre">
+  <div class="wrap">
+    <div class="about">
+      <div class="about-text">
+        <div class="section-head" style="margin-bottom:20px;">
+          <h2>Cómputo cuántico, en un solo día</h2>
+        </div>
+        <p>Qiskit Fall Fest es un evento académico y de divulgación enfocado en <strong>computación cuántica y sus aplicaciones</strong>. La jornada reúne conferencias sobre distintas perspectivas del cómputo cuántico con una sesión de pósters donde estudiantes e investigadores presentan sus propios proyectos.</p>
+        <p>Está pensado para cualquier persona interesada, sin importar su nivel: estudiantes de licenciatura y posgrado, docentes, investigadores y curiosos de la física, las matemáticas, la computación y la ingeniería.</p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="num">100</div><div class="lab">asistentes esperados</div></div>
+        <div class="stat-card"><div class="num">5</div><div class="lab">conferencias</div></div>
+        <div class="stat-card"><div class="num">2</div><div class="lab">sesiones de pósters</div></div>
+        <div class="stat-card"><div class="num">1</div><div class="lab">jornada completa</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="programa">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Programa tentativo</h2>
+      <p>Sede y fecha exacta por confirmar — puedes revisar aquí en cuanto se anuncien. El horario es orientativo, de aproximadamente siete horas.</p>
+    </div>
+    <div class="program-list">
+      <div class="program-row"><time>10:00</time><div class="activity">Registro y bienvenida</div></div>
+      <div class="program-row"><time>10:20</time><div class="activity">Inauguración y presentación del evento</div></div>
+      <div class="program-row"><time>10:30</time><div class="activity">Conferencia 1</div></div>
+      <div class="program-row"><time>11:15</time><div class="activity">Conferencia 2</div></div>
+      <div class="program-row"><time>12:00</time><div class="activity">Descanso</div></div>
+      <div class="program-row"><time>12:20</time><div class="activity">Conferencia 3</div></div>
+      <div class="program-row highlight"><time>13:05</time><div class="activity">Primera sesión de pósters</div></div>
+      <div class="program-row"><time>13:50</time><div class="activity">Descanso / comida</div></div>
+      <div class="program-row"><time>14:30</time><div class="activity">Conferencia 4</div></div>
+      <div class="program-row"><time>15:15</time><div class="activity">Conferencia 5 / charla especial</div></div>
+      <div class="program-row highlight"><time>16:00</time><div class="activity">Segunda sesión de pósters</div></div>
+      <div class="program-row"><time>16:40</time><div class="activity">Clausura</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="posters">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Sesión de pósters</h2>
+      <p>Estudiantes, investigadores y miembros de la comunidad pueden presentar trabajos relacionados con el cómputo cuántico, entre otros temas:</p>
+    </div>
+    <div class="chip-cloud">
+      <span class="chip">Algoritmos cuánticos</span>
+      <span class="chip">Computación cuántica con Qiskit</span>
+      <span class="chip">Simulación cuántica</span>
+      <span class="chip">Información cuántica</span>
+      <span class="chip">Criptografía cuántica</span>
+      <span class="chip">Aprendizaje automático cuántico</span>
+      <span class="chip">Química cuántica</span>
+      <span class="chip">Fundamentos matemáticos</span>
+      <span class="chip">Aplicaciones de tecnologías cuánticas</span>
+      <span class="chip">Investigación interdisciplinaria</span>
+    </div>
+  </div>
+</section>
+
+<section id="hackathon">
+  <div class="wrap">
+    <div class="hackathon">
+      <span class="tag">Un día después del evento principal</span>
+      <h2>Suma el hackathon a tu experiencia</h2>
+      <p class="lede">Al día siguiente de las conferencias, forma equipo y resuelve retos de cómputo cuántico propuestos directamente por Qiskit. Habrá premios para los mejores equipos.</p>
+
+      <div class="hack-grid">
+        <div class="hack-card">
+          <h3>Retos de Qiskit</h3>
+          <p>Los problemas a resolver provienen de los materiales oficiales de Qiskit, con distintos niveles de dificultad para que cualquier equipo pueda participar.</p>
+        </div>
+        <div class="hack-card">
+          <h3>Premios</h3>
+          <p>Los equipos ganadores recibirán premios. Los detalles y categorías se anunciarán junto con la fecha exacta del hackathon.</p>
+        </div>
+        <div class="hack-card">
+          <h3>CDMX · Noviembre 2026</h3>
+          <p>Mismo lugar y mes que Qiskit Fall Fest, un día después. La sede y fecha exacta se confirmarán próximamente.</p>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn-hack" href="https://forms.gle/oj7DVksdnHsRG48YA" target="_blank" rel="noopener">Reservar mi lugar en el hackathon</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="support">
+      <div class="ibm-badge">IBM<br>Quantum</div>
+      <div class="support-text">
+        <div class="section-head" style="margin-bottom:14px;">
+          <h2>Con el respaldo de IBM Quantum</h2>
+        </div>
+        <p>Como sede oficial de Qiskit Fall Fest 2026, el evento cuenta con materiales y recursos educativos de Qiskit, la posibilidad de un speaker de IBM Quantum (presencial o virtual) y acceso a la comunidad global de organizadores de Qiskit Fall Fest.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="org">
+      Qiskit Fall Fest 2026 — Ciudad de México, Noviembre 2026.
+    </div>
+    <div class="contact">
+      <a class="btn btn-ghost" href="https://forms.gle/oj7DVksdnHsRG48YA" target="_blank" rel="noopener">Registrarme al evento</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html> 
